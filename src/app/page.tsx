@@ -2,52 +2,56 @@
 
 import { NFT_CONTRACTS } from "@/consts/nft_contracts";
 import { Link } from "@chakra-ui/next-js";
-import {
-  Box,
-  Card,
-  CardBody,
-  CardHeader,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  StackDivider,
-  Text,
-} from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Box, Flex, Heading, Text, Spinner } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import styles from "../styles/Navbar.module.css"; // Import the CSS module for styling
 
 export default function Home() {
-  // Log the contracts to check if data is loading correctly
-  console.log("NFT_CONTRACTS:", NFT_CONTRACTS);
+  const [loading, setLoading] = useState(true);
 
-  // Add an effect to see when the component is rendered
+  // Simulate loading effect
   useEffect(() => {
-    NFT_CONTRACTS.forEach((contract, index) => {
-      console.log(`Contract #${index + 1}:`, contract);
-      console.log("Title:", contract.title);
-      console.log("Thumbnail URL:", contract.thumbnailUrl);
-    });
+    const loadImages = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(loadImages);
   }, []);
 
+  if (loading) {
+    return (
+      <Box className="loading-overlay">
+        <Spinner size="xl" className="spinner" />
+      </Box>
+    );
+  }
+
+  // Map button styles based on title keywords
+  const buttonStyleMap: { [key: string]: string } = {
+    "99 Billion": "gold",
+    "Gimp Collection": "purple",
+  };
+
   return (
-    <Flex>
-      <Box mt="24px" m="auto">
-        <Flex direction="column" gap="4">
-          <Heading ml="20px" mt="40px">
-            Trending collections
+    <Flex justifyContent="center" alignItems="center" minHeight="100vh" bg="#121212">
+      <Box mt="24px" m="auto" textAlign="center">
+        <Flex direction="column" gap="4" alignItems="center">
+          <Heading mt="60px" mb="40px" color="#ffffff">
+            The Gimp!
           </Heading>
+
           <Flex
             direction="row"
             wrap="wrap"
-            mt="20px"
-            gap="5"
-            justifyContent="space-evenly"
+            gap="20px"
+            justifyContent="center"
+            alignItems="center"
           >
             {/* Render the list of NFT contracts */}
-            {NFT_CONTRACTS.map((item) => {
-              // Log each item's values
-              console.log(`Rendering contract: ${item.title} at address: ${item.address}`);
-              console.log(`Image URL: ${item.thumbnailUrl}`);
+            {NFT_CONTRACTS.map((item, index) => {
+              // Determine button style based on title or index fallback
+              const buttonStyle = item.title && buttonStyleMap[item.title]
+                ? buttonStyleMap[item.title]
+                : index % 2 === 0
+                ? "green"
+                : "red";
 
               return (
                 <Link
@@ -57,18 +61,34 @@ export default function Home() {
                   key={item.address}
                   href={`/collection/${item.chain.id.toString()}/${item.address}`}
                 >
-                  {/* Use standard <img> tag to test if image paths are valid */}
-                  <img
-                    src={item.thumbnailUrl}
-                    alt={`Thumbnail for ${item.title}`}
-                    style={{ width: "100%", height: "auto" }}
-                    onError={() =>
-                      console.error(`Error loading image for: ${item.title}`)
-                    }
-                  />
-                  <Text fontSize="large" mt="10px">
-                    {item.title}
-                  </Text>
+                  <div className={styles.frameContainer}>
+                    {/* Render Thumbnail or Placeholder */}
+                    {item.thumbnailUrl ? (
+                      <img
+                        src={item.thumbnailUrl}
+                        alt={`Thumbnail for ${item.title ?? "NFT Collection"}`}
+                        className={styles.nftThumbnail}
+                        onError={() =>
+                          console.error(`Error loading image for: ${item.title}`)
+                        }
+                      />
+                    ) : (
+                      <div className={styles.placeholderImage}>
+                        <Text>No Image Available</Text>
+                      </div>
+                    )}
+                    <Text fontSize="large" mt="10px" className={styles.nftTitle}>
+                      {item.title || "Untitled Collection"}
+                    </Text>
+                  </div>
+                  {/* Render Button with Dynamic Styles and Text */}
+                  <div className={styles.buttonFrame}>
+                    <button
+                      className={`${styles.jazzedButton} ${styles[buttonStyle]}`}
+                    >
+                      {`Explore ${item.title ?? "NFT Collection"}`}
+                    </button>
+                  </div>
                 </Link>
               );
             })}

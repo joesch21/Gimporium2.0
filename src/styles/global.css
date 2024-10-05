@@ -15,7 +15,7 @@
 }
 
 body.dark-mode {
-  --background: #1a202c;
+  --background: #9da3af;
   --text-color: #b19191;
   --link-color: #ffffff;
   --button-bg: #ffffff;
@@ -76,16 +76,21 @@ body.dark-mode {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Placeholder styling */
 .placeholder-image {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
   border-radius: 8px;
   border: 2px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
 }
 
 .collection-title {
@@ -265,7 +270,6 @@ a:hover {
   text-decoration: underline;
 }
 
-button,
 .collection-button {
   background: var(--button-bg);
   color: var(--button-text);
@@ -274,6 +278,10 @@ button,
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 15px; /* Adds spacing between text and button */
+  display: block;
+  width: fit-content; /* Adjust to button size */
+  text-align: center;
 }
 
 button:hover,
@@ -300,23 +308,30 @@ button:hover,
   border-radius: 8px;
   border: 2px solid #ccc;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.nft-thumbnail:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
 }
 
 
 .frame-container {
   position: relative;
-  width: 200px; /* Adjust width based on your requirements */
-  height: 260px; /* Increased height to accommodate the number label below */
-  margin: 10px;
-  border: 2px solid #fff; /* Keeps the border styling */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust width for a larger frame */
+  height: 300px; /* Increased height */
+  margin: 20px;
+  border: 5px solid #f3f0f0; /* Add a pronounced border */
+  border-radius: 10px; /* Slightly rounded corners */
+  background-color: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Add a raised shadow effect */
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .frame-container:hover {
   transform: scale(1.05);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
 }
 
 /*******************************************************

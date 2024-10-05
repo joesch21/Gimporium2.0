@@ -16,7 +16,6 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import { blo } from "blo";
 import { FaRegMoon } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { IoSunny } from "react-icons/io5";
@@ -28,27 +27,42 @@ import {
 } from "thirdweb/react";
 import type { Wallet } from "thirdweb/wallets";
 import { SideMenu } from "./SideMenu";
+import { useRouter } from "next/navigation"; // Use the Next.js router for navigation
+import styles from "../../styles/Navbar.module.css";
 
 export function Navbar() {
   const account = useActiveAccount();
   const wallet = useActiveWallet();
   const { colorMode } = useColorMode();
+  const router = useRouter(); // Use the router to navigate back
+
   return (
-    <Box py="30px" px={{ base: "20px", lg: "50px" }}>
-      <Flex direction="row" justifyContent="space-between">
-        <Box my="auto">
-          <Heading
-            as={Link}
-            href="/"
-            _hover={{ textDecoration: "none" }}
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            bgClip="text"
-            fontWeight="extrabold"
+    <Box className={styles.navbarContainer} py="30px" px={{ base: "20px", lg: "50px" }}>
+      <Flex className={styles.navbarFlex} direction="row" justifyContent="space-between">
+        <Flex direction="row" alignItems="center">
+          {/* Branding Title */}
+          <Box my="auto" className={styles.branding} mr="20px">
+            <Heading
+              as={Link}
+              href="/"
+              className={styles["glitter-text"]} // Add the glitter-text class here
+              _hover={{ textDecoration: "none" }}
+              fontWeight="extrabold"
+            >
+              Ock's Gimporium
+            </Heading>
+          </Box>
+          {/* Go Back Button */}
+          <Button
+            className={styles.collectionButton} // Use existing button styling
+            onClick={() => router.back()} // Go back using the router
+            bg="transparent"
+            border="2px solid #FFF"
+            _hover={{ backgroundColor: "#333", color: "#FFF" }}
           >
-            {/* Replace this with your own branding */}
-            THIRDMART
-          </Heading>
-        </Box>
+            Go Back
+          </Button>
+        </Flex>
         <Box display={{ lg: "block", base: "none" }}>
           <ToggleThemeButton />
           {account && wallet ? (
@@ -86,7 +100,7 @@ function ProfileButton({
             <FiUser size={30} />
           </Box>
           <Image
-            src={ensAvatar ?? blo(address as `0x${string}`)}
+            src={ensAvatar ?? ""}
             height="40px"
             rounded="8px"
           />

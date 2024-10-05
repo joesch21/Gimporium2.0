@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background-image: url('/Digital_Gallery_Images/IMG_3403.PNG'); /* Background image */
+  background-image: url('/images/IMG_3402_s.PNG'); /* Background image */
   background-size: cover;
   color: #ffffff;
   z-index: 1000;
@@ -23,11 +23,25 @@
   margin-left: 10px; /* Adjust spacing */
 }
 
-.brandingLink {
-  font-size: 24px;
+/* Glitter Heading Effect */
+.glitter-text {
+  position: relative;
   font-weight: bold;
+  animation: glitter 1.5s linear infinite;
+  background-clip: text;
   color: #ffffff;
-  text-decoration: none;
+}
+
+/* Sparkling Glitter Outline */
+@keyframes glitter {
+  0%, 100% {
+    text-shadow: 0 0 3px #ff6ac1, 0 0 7px #ff6ac1, 0 0 10px #ff6ac1,
+                 0 0 15px #ff6ac1, 0 0 20px #ff6ac1, 0 0 25px #ff6ac1;
+  }
+  50% {
+    text-shadow: 0 0 3px #ffd700, 0 0 7px #ffd700, 0 0 10px #ffd700,
+                 0 0 15px #ffd700, 0 0 20px #ffd700, 0 0 25px #ffd700;
+  }
 }
 
 /* Menu Items Styles */
@@ -37,81 +51,152 @@
   gap: 15px; /* Adjust spacing between menu items */
 }
 
-/* Profile Button Wrapper */
-.profileButtonWrapper {
+/* Other existing styles remain unchanged */
+.frameContainer {
   position: relative;
-  margin-left: 20px; /* Adjust to control spacing from other menu items */
+  width: 220px;
+  height: 280px;
+  margin: 0 auto; /* Center each frame container */
+  border: 5px solid gold;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Profile Button */
-.profileButton {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
+.frameContainer:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* User Icon Styles */
-.userIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  background-color: #00000066; /* Semi-transparent background */
-}
-
-/* Dropdown Menu Styles */
-.dropdownMenu {
-  position: absolute;
-  right: 0;
-  top: 50px; /* Adjust to position correctly below the button */
-  background: #333;
-  color: white;
+/* Image Styling */
+.nftThumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: 8px;
-  padding: 10px;
-  z-index: 1000; /* Ensure it appears on top */
+  border: 3px solid gold;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+  margin: 0 auto; /* Center the image */
 }
 
-/* Wallet Address Styling */
-.walletAddress {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 8px;
+.nftThumbnail:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4); /* Increase shadow effect on hover */
 }
 
-/* Menu Item Styles */
-.menuItem {
-  margin: 10px;
-  cursor: pointer;
+
+.frameContainer:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Theme Toggle Button */
-.themeToggleButton {
-  background: none;
+.nftThumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.nftThumbnail:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+}
+
+.collectionButton {
+  background: var(--button-bg);
+  color: var(--button-text);
+  padding: 10px 20px;
   border: none;
-  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 15px;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  display: block;
+  width: fit-content;
+  text-align: center;
 }
 
-/* Mobile Navbar Optimization */
-@media screen and (max-width: 768px) {
-  .navbarContainer {
-    padding: 10px 15px; /* Reduced padding for smaller screens */
-  }
-
-  .brandingLink {
-    font-size: 20px;
-  }
-
-  .menuItems {
-    gap: 10px;
-  }
-
-  .themeToggleButton {
-    padding: 5px 10px;
-    font-size: 14px;
-  }
+.collectionButton:hover {
+  background: var(--button-hover-bg);
 }
+
+/* Button Frame Container */
+.buttonFrame {
+  display: inline-block; /* Set to inline-block to wrap the button */
+  padding: 5px; /* Add padding to create the frame effect */
+  border: 4px solid gold; /* Gold border to highlight the button */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Button Frame Hover Effect */
+.buttonFrame:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Base Jazzed Button Styles */
+.jazzedButton {
+  background: var(--button-bg);
+  color: var(--button-text);
+  padding: 12px 25px; /* Adjust padding */
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  display: block;
+  width: fit-content;
+  text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Add Hover Effects */
+.jazzedButton:hover {
+  background: var(--button-hover-bg);
+  transform: scale(1.05); /* Slightly enlarge */
+}
+
+/* Different Button Variations */
+.jazzedButton.gold {
+  background: #ffd700; /* Gold color */
+  color: #333;
+  border: 2px solid #e6b800;
+}
+
+.jazzedButton.purple {
+  background: #6a0dad; /* Purple button */
+  color: #fff;
+  border: 2px solid #54148c;
+}
+
+.jazzedButton.red {
+  background: #ff6347; /* Red button */
+  color: #fff;
+  border: 2px solid #e94d35;
+}
+
+.jazzedButton.green {
+  background: #32cd32; /* Green button */
+  color: #fff;
+  border: 2px solid #2aa42a;
+}
+
