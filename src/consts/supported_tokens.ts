@@ -29,11 +29,7 @@ export const SUPPORTED_TOKENS: SupportedTokens[] = [
         symbol: "GCC",
         icon: "/erc20-icons/GCC.png",
       },
-      {
-        tokenAddress: "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-        symbol: "BNB",
-        icon: "/erc20-icons/bnb.jpg",
-      },
+      
       // Add more ERC20 here...
     ],
   },
@@ -45,6 +41,6 @@ export const SUPPORTED_TOKENS: SupportedTokens[] = [
 
 export const NATIVE_TOKEN_ICON_MAP: { [key in Chain["id"]]: string } = {
   1: "/native-token-icons/GCC.png",
-  [bsc.id]: "/native-token-icons/bsc.png",
+  [bsc.id]: "/native-token-icons/bnb.jpg",
   
 };

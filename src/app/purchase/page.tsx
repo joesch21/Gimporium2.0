@@ -28,9 +28,10 @@ const PurchaseGCC: React.FC = () => {
       } else {
         alert("MetaMask is not installed. Please install MetaMask and try again.");
       }
-    } catch (error) {
-      console.error(`Failed to add GCC token to MetaMask: ${error.message || error}`);
-    }
+    } catch (error: any) {
+        console.error(`Failed to add GCC token to MetaMask: ${error?.message || String(error)}`);
+      }
+      
   };
 
   return (
