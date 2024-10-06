@@ -191,30 +191,23 @@ export function Token(props: Props) {
                 <AccordionPanel pb={4}>
                   {listings.length > 0 ? (
                     <TableContainer>
-                      <Table
-                        variant="simple"
-                        sx={{ "th, td": { borderBottom: "none" } }}
-                      >
+                      <Table variant="simple" sx={{ "th, td": { borderBottom: "none" } }}>
                         <Thead>
                           <Tr>
                             <Th>Price</Th>
                             {type === "ERC1155" && <Th px={1}>Qty</Th>}
-                            <Th>Expiration</Th>
-                            <Th px={1}>From</Th>
-                            <Th>{""}</Th>
+                            <Th px={1}>From</Th> {/* Removed Expiration Column */}
+                            <Th>{""}</Th> {/* Column for buttons */}
                           </Tr>
                         </Thead>
                         <Tbody>
                           {listings.map((item) => {
-                            const listedByYou =
-                              item.creatorAddress.toLowerCase() ===
-                              account?.address.toLowerCase();
+                            const listedByYou = item.creatorAddress.toLowerCase() === account?.address.toLowerCase();
                             return (
                               <Tr key={item.id.toString()}>
                                 <Td>
                                   <Text>
-                                    {item.currencyValuePerToken.displayValue}{" "}
-                                    {item.currencyValuePerToken.symbol}
+                                    {item.currencyValuePerToken.displayValue} {item.currencyValuePerToken.symbol}
                                   </Text>
                                 </Td>
                                 {type === "ERC1155" && (
@@ -222,15 +215,9 @@ export function Token(props: Props) {
                                     <Text>{item.quantity.toString()}</Text>
                                   </Td>
                                 )}
-                                <Td>
-                                  <Text>
-                                    {getExpiration(item.endTimeInSeconds)}
-                                  </Text>
-                                </Td>
                                 <Td px={1}>
                                   <Text>
-                                    {item.creatorAddress.toLowerCase() ===
-                                    account?.address.toLowerCase()
+                                    {item.creatorAddress.toLowerCase() === account?.address.toLowerCase()
                                       ? "You"
                                       : shortenAddress(item.creatorAddress)}
                                   </Text>
@@ -238,15 +225,9 @@ export function Token(props: Props) {
                                 {account && (
                                   <Td>
                                     {!listedByYou ? (
-                                      <BuyFromListingButton
-                                        account={account}
-                                        listing={item}
-                                      />
+                                      <BuyFromListingButton account={account} listing={item} />
                                     ) : (
-                                      <CancelListingButton
-                                        account={account}
-                                        listingId={item.id}
-                                      />
+                                      <CancelListingButton account={account} listingId={item.id} />
                                     )}
                                   </Td>
                                 )}
@@ -269,26 +250,4 @@ export function Token(props: Props) {
       </Box>
     </Flex>
   );
-}
-
-function getExpiration(endTimeInSeconds: bigint) {
-  // Get the current date and time
-  const currentDate = new Date();
-
-  // Convert seconds to milliseconds (bigint)
-  const milliseconds: bigint = endTimeInSeconds * 1000n;
-
-  // Calculate the future date by adding milliseconds to the current date
-  const futureDate = new Date(currentDate.getTime() + Number(milliseconds));
-
-  // Format the future date
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    timeZoneName: "short",
-  };
-  const formattedDate = futureDate.toLocaleDateString("en-US", options);
-  return formattedDate;
 }
