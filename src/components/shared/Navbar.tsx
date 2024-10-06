@@ -27,14 +27,14 @@ import {
 } from "thirdweb/react";
 import type { Wallet } from "thirdweb/wallets";
 import { SideMenu } from "./SideMenu";
-import { useRouter } from "next/navigation"; // Use the Next.js router for navigation
+import { useRouter } from "next/navigation";
 import styles from "../../styles/Navbar.module.css";
 
 export function Navbar() {
   const account = useActiveAccount();
   const wallet = useActiveWallet();
   const { colorMode } = useColorMode();
-  const router = useRouter(); // Use the router to navigate back
+  const router = useRouter();
 
   return (
     <Box className={styles.navbarContainer} py="30px" px={{ base: "20px", lg: "50px" }}>
@@ -45,24 +45,48 @@ export function Navbar() {
             <Heading
               as={Link}
               href="/"
-              className={styles["glitter-text"]} // Add the glitter-text class here
+              className={styles["glitter-text"]}
               _hover={{ textDecoration: "none" }}
               fontWeight="extrabold"
             >
               Ock's Gimporium
             </Heading>
           </Box>
-          {/* Go Back Button */}
-          <Button
-            className={styles.collectionButton} // Use existing button styling
-            onClick={() => router.back()} // Go back using the router
-            bg="transparent"
-            border="2px solid #FFF"
-            _hover={{ backgroundColor: "#333", color: "#FFF" }}
-          >
-            Go Back
-          </Button>
+          {/* Container for stacking buttons vertically */}
+          <Flex direction={{ base: "column", md: "column", lg: "row" }} alignItems="center" gap="10px">
+            {/* Go Back Button */}
+            <Button
+              className={styles.collectionButton}
+              onClick={() => router.back()}
+              bg="transparent"
+              border="2px solid #FFF"
+              _hover={{ backgroundColor: "#333", color: "#FFF" }}
+            >
+              Go Back
+            </Button>
+
+            {/* "See My NFTs" Button placed between "Go Back" and "Buy GCC Tokens" */}
+            <Link href="/profile">
+              <Button
+                size="md"
+                bgGradient="linear(to-r, #7928CA, #FF0080)"
+                color="white"
+                fontWeight="bold"
+                _hover={{ bgGradient: "linear(to-l, #7928CA, #FF0080)" }}
+              >
+                See My NFTs
+              </Button>
+            </Link>
+
+            {/* Buy GCC Tokens Button */}
+            <Link href="/purchase">
+              <Button size="md" bg="yellow.400" color="black" _hover={{ bg: "yellow.500" }}>
+                Buy GCC Tokens
+              </Button>
+            </Link>
+          </Flex>
         </Flex>
+
         <Box display={{ lg: "block", base: "none" }}>
           <ToggleThemeButton />
           {account && wallet ? (
@@ -71,7 +95,7 @@ export function Navbar() {
             <ConnectButton
               client={client}
               theme={colorMode}
-              connectButton={{ style: { height: "56px" } }}
+              connectButton={{ style: { height: "20px" } }}
             />
           )}
         </Box>
@@ -99,11 +123,7 @@ function ProfileButton({
           <Box my="auto">
             <FiUser size={30} />
           </Box>
-          <Image
-            src={ensAvatar ?? ""}
-            height="40px"
-            rounded="8px"
-          />
+          <Image src={ensAvatar ?? ""} height="40px" rounded="8px" />
         </Flex>
       </MenuButton>
       <MenuList>
@@ -113,7 +133,7 @@ function ProfileButton({
           </Box>
         </MenuItem>
         <MenuItem as={Link} href="/profile" _hover={{ textDecoration: "none" }}>
-          Profile {ensName ? `(${ensName})` : ""}
+          SEE NFT IN YOUR WALLET {ensName ? `(${ensName})` : ""}
         </MenuItem>
         <MenuItem
           onClick={() => {
