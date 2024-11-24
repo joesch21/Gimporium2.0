@@ -4,16 +4,19 @@ import { Navbar } from "@/components/shared/Navbar";
 
 export const metadata: Metadata = {
   title: "Marketplace",
-  description: "",
+  description: "Your NFT Marketplace",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body style={{ paddingBottom: "100px" }}>
         <Providers>
           <Navbar />

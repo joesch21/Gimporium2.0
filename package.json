@@ -31,5 +31,13 @@
     "@types/react-dom": "^18",
     "postcss": "^8",
     "typescript": "^5"
-  }
+  },
+  "engines": {
+    "node": ">=16", 
+    "npm": ">=8"
+  },
+  "browser": {
+      "fs": false, 
+      "net": false 
+    }
 }
