@@ -19,11 +19,5 @@ export const NFT_CONTRACTS: NftContract[] = [
     thumbnailUrl: "/images/background.png", // Updated to use local image
     type: "ERC721",
   },
-  {
-    address: "0xF09334a9027b263096b772b0F46D271E90b53F3E",
-    chain: bsc,
-    title: "Gimp Collection",
-    thumbnailUrl: "/images/IMG_7684.png", // Updated to use local image
-    type: "ERC721",
-  },
+  
 ];
