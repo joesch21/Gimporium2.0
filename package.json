@@ -1,5 +1,6 @@
 {
   "name": "marketplace-template",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +17,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@tanstack/react-query": "^5.44.0",
+    "@thirdweb-dev/sdk": "^4.0.99",
     "blo": "^1.2.0",
     "framer-motion": "^11.2.10",
     "next": "14.2.4",
@@ -23,7 +25,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
-    "thirdweb": "^5.28.0"
+    "thirdweb": "^5.76.1"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -33,11 +35,11 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=16", 
+    "node": ">=16",
     "npm": ">=8"
   },
   "browser": {
-      "fs": false, 
-      "net": false 
-    }
+    "fs": false,
+    "net": false
+  }
 }
