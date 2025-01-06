@@ -10,22 +10,37 @@ import Head from "next/head"; // Import Head for metadata management
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading effect
+  // Simulate loading effect with engaging animation
   useEffect(() => {
-    const loadImages = setTimeout(() => setLoading(false), 1000);
+    const loadImages = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(loadImages);
   }, []);
 
   if (loading) {
     return (
-      <Box className="loading-overlay">
-        <Spinner size="xl" className="spinner" />
+      <Box 
+        className="loading-overlay" 
+        display="flex" 
+        justifyContent="center" 
+        alignItems="center" 
+        height="100vh"
+      >
+        <Spinner 
+          size="xl" 
+          className="spinner" 
+          thickness="6px" 
+          speed="0.65s" 
+          color="blue.500" 
+        />
+        <Text mt={4} fontSize="xl" color="white">
+          Loading your NFT adventure...
+        </Text>
       </Box>
     );
   }
 
-  // Map button styles based on title keywords
-  const buttonStyleMap: { [key: string]: string } = {
+  // Map button styles based on title keywords with a flexible type definition
+  const buttonStyleMap: Record<string, string> = {
     "99 Billion": "gold",
     "Gimp Collection": "purple",
   };
@@ -33,27 +48,42 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>The Gimp!</title>
-        <link rel="icon" href="/favicon.ico" /> {}
+        <title>The Gimp Collection - Discover & Win</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Flex justifyContent="center" alignItems="center" minHeight="100vh" bg="#121212">
+      <Flex 
+        justifyContent="center" 
+        alignItems="center" 
+        minHeight="100vh" 
+        bgGradient="linear(to-r, #000428, #004e92)"
+        padding="20px"
+      >
         <Box mt="24px" m="auto" textAlign="center">
           <Flex direction="column" gap="4" alignItems="center">
-            <Heading mt="60px" mb="40px" color="#ffffff">
-              The Gimp!
+
+            <Heading 
+              mt="80px" 
+              mb="60px" 
+              color="white" 
+              fontSize="5xl" 
+              textShadow="2px 2px #ff0080"
+              textAlign="center"
+            >
+              Buy an NFT with BNB or GCC
+              <br />
+              for a <br />
+              Chance to Win <Text as="span" color="yellow.400">30,000 GCC</Text>
             </Heading>
 
             <Flex
               direction="row"
               wrap="wrap"
-              gap="20px"
+              gap="40px"
               justifyContent="center"
               alignItems="center"
             >
-              {/* Render the list of NFT contracts */}
               {NFT_CONTRACTS.map((item, index) => {
-                // Determine button style based on title or index fallback
                 const buttonStyle =
                   item.title && buttonStyleMap[item.title]
                     ? buttonStyleMap[item.title]
@@ -64,18 +94,25 @@ export default function Home() {
                 return (
                   <Link
                     _hover={{ textDecoration: "none" }}
-                    w={300}
-                    h={400}
+                    w={["100%", "300px", "450px"]}
+                    h={["100%", "300px", "450px"]}
                     key={item.address}
                     href={`/collection/${item.chain.id.toString()}/${item.address}`}
                   >
-                    <div className={styles.frameContainer}>
-                      {/* Render Thumbnail or Placeholder */}
+                    <div 
+                      className={styles.frameContainer} 
+                      style={{ 
+                        border: "4px solid #FFD700", 
+                        borderRadius: "15px", 
+                        padding: "10px" 
+                      }}
+                    >
                       {item.thumbnailUrl ? (
                         <img
                           src={item.thumbnailUrl}
                           alt={`Thumbnail for ${item.title ?? "NFT Collection"}`}
                           className={styles.nftThumbnail}
+                          style={{ borderRadius: "10px", boxShadow: "0 0 20px rgba(255, 215, 0, 0.8)" }}
                           onError={() =>
                             console.error(`Error loading image for: ${item.title}`)
                           }
@@ -89,10 +126,11 @@ export default function Home() {
                         {item.title || "Untitled Collection"}
                       </Text>
                     </div>
-                    {/* Render Button with Dynamic Styles and Text */}
+
                     <div className={styles.buttonFrame}>
                       <button
                         className={`${styles.jazzedButton} ${styles[buttonStyle]}`}
+                        style={{ padding: "16px 30px", fontSize: "1.2rem" }}
                       >
                         {`Explore ${item.title ?? "NFT Collection"}`}
                       </button>
