@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>The Gimp Collection - Discover & Win</title>
+        <title>The Gimp Collection - Digital ART Reinvented</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -86,7 +86,7 @@ export default function Home() {
               size="md"
               mb="20px"
             >
-              Visit Staking Page
+              Visit Staking Page To Earn GCC!
             </Button>
 
             <Flex
