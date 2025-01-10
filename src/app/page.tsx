@@ -57,22 +57,25 @@ export default function Home() {
         bgGradient="linear(to-r, #000428, #004e92)"
         padding="20px"
       >
-        <Box mt="24px" m="auto" textAlign="center">
+        <Box mt="24px" m="auto" textAlign="center" maxWidth="600px">
           <Flex direction="column" gap="4" alignItems="center">
 
             <Heading 
-              mt="80px" 
-              mb="60px" 
+              mt="40px" 
+              mb="40px" 
               color="white" 
-              fontSize="5xl" 
+              fontSize="3xl" 
               textShadow="2px 2px #ff0080"
               textAlign="center"
             >
-              Ock's Amazing Gimp Gallery <br />
-              <Text as="span" color="yellow.400">245 Unique Handcrafted Art Pieces</Text>
-              <br />
-              From the Largest Generative Art Collection ever created! <br /> <Text as="span" color="red.400">Earn staking rewards for your NFT!</Text>
+              Ock's Amazing Gimp Gallery
             </Heading>
+            <Text fontSize="lg" color="yellow.400" textAlign="center">
+              245 Unique Handcrafted Art Pieces
+            </Text>
+            <Text fontSize="lg" color="white" textAlign="center">
+              From the Largest Generative Art Collection ever created! Earn staking rewards for your NFT!
+            </Text>
 
             <Button 
               as="a" 
@@ -80,7 +83,7 @@ export default function Home() {
               target="_blank" 
               rel="noopener noreferrer"
               colorScheme="teal"
-              size="lg"
+              size="md"
               mb="20px"
             >
               Visit Staking Page
@@ -89,7 +92,7 @@ export default function Home() {
             <Flex
               direction="row"
               wrap="wrap"
-              gap="40px"
+              gap="20px"
               justifyContent="center"
               alignItems="center"
             >
@@ -104,8 +107,8 @@ export default function Home() {
                 return (
                   <Link
                     _hover={{ textDecoration: "none" }}
-                    w={["100%", "300px", "450px"]}
-                    h={["100%", "300px", "450px"]}
+                    w={"300px"}
+                    h={"300px"}
                     key={item.address}
                     href={`/collection/${item.chain.id.toString()}/${item.address}`}
                   >
@@ -140,7 +143,7 @@ export default function Home() {
                     <div className={styles.buttonFrame}>
                       <button
                         className={`${styles.jazzedButton} ${styles[buttonStyle]}`}
-                        style={{ padding: "16px 30px", fontSize: "1.2rem" }}
+                        style={{ padding: "12px 24px", fontSize: "1rem" }}
                       >
                         {`Explore ${item.title ?? "NFT Collection"}`}
                       </button>
