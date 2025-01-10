@@ -2,15 +2,14 @@
 
 import { NFT_CONTRACTS } from "@/consts/nft_contracts";
 import { Link } from "@chakra-ui/next-js";
-import { Box, Flex, Heading, Text, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Spinner, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import styles from "../styles/Navbar.module.css"; // Import the CSS module for styling
-import Head from "next/head"; // Import Head for metadata management
+import styles from "../styles/Navbar.module.css";
+import Head from "next/head";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading effect with engaging animation
   useEffect(() => {
     const loadImages = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(loadImages);
@@ -19,7 +18,7 @@ export default function Home() {
   if (loading) {
     return (
       <Box 
-        className="loading-overlay" 
+        className={styles.loadingOverlay}
         display="flex" 
         justifyContent="center" 
         alignItems="center" 
@@ -27,7 +26,7 @@ export default function Home() {
       >
         <Spinner 
           size="xl" 
-          className="spinner" 
+          className={styles.spinner} 
           thickness="6px" 
           speed="0.65s" 
           color="blue.500" 
@@ -39,7 +38,6 @@ export default function Home() {
     );
   }
 
-  // Map button styles based on title keywords with a flexible type definition
   const buttonStyleMap: Record<string, string> = {
     "99 Billion": "gold",
     "Gimp Collection": "purple",
@@ -70,11 +68,23 @@ export default function Home() {
               textShadow="2px 2px #ff0080"
               textAlign="center"
             >
-              Buy an NFT with BNB or GCC
+              Ock's Amazing Gimp Gallery <br />
+              <Text as="span" color="yellow.400">245 Unique Handcrafted Art Pieces</Text>
               <br />
-              for a <br />
-              Chance to Win <Text as="span" color="yellow.400">30,000 GCC</Text>
+              From the Largest Generative Art Collection ever created! <br /> <Text as="span" color="red.400">Earn staking rewards for your NFT!</Text>
             </Heading>
+
+            <Button 
+              as="a" 
+              href="https://gcc-staking.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              colorScheme="teal"
+              size="lg"
+              mb="20px"
+            >
+              Visit Staking Page
+            </Button>
 
             <Flex
               direction="row"
